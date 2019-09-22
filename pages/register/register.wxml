@@ -1,0 +1,25 @@
+<!--pages/register/register.wxml-->
+<view class='container'>
+  <text class="header1">欢迎使用湖南科技大学网络信息服务</text>
+  <text class='header2'>请输入您的手机号码,登录或注册您的临时网络账号</text>
+  <view class='content'>
+    <view class='phone'>
+      <input type='number' placeholder='手机号' bindinput='inputNum'></input>
+    </view>
+  </view>
+  <view class='content'>
+    <view class='validation'>
+      <input  type='number'  placeholder='验证码' bindinput='inputValid'></input>
+    </view>
+    <view class='button'>
+      <button style="border-radius:5px" bindtap='getData' disabled='{{disabled}}'>{{codename}}</button>
+    </view>
+  </view>
+  <view class='login'>
+    <button style="border-radius:5px"  bindtap='register' >登录</button>
+  </view>
+  <text class='header2'>温馨提示：登陆时自动注册</text>
+  <!-- <view>{{phoneNum}}</view>
+  <view>{{validation}}</view> -->
+  <button  bindtap='login'>授权页面</button>
+</view>

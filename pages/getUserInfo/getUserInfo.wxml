@@ -1,0 +1,7 @@
+<!--pages/getUserInfo/getUserInfo.wxml-->
+<view class="content">
+  <view class="btn">
+    <button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">授权登录</button>
+  </view>
+  <image class="bkg" mode="aspectFill" src="../../images/temp.jpg"></image>
+</view>

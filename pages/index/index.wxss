@@ -1,0 +1,41 @@
+/**index.wxss**/
+.header{
+  margin-top: 80rpx;
+  font-size: 45rpx;
+  text-align: center
+}
+.content{
+  margin-top: 150rpx;
+  margin-bottom : 150rpx;
+  font-size: 40rpx;
+}
+.idnum{
+  width: 100%;
+  padding: 5px;
+  line-height: 40px;
+  height: 40px;
+  border-top: 1rpx solid rgba(145, 153, 151, 0.24);
+  border-bottom: 1rpx solid rgba(145, 153, 151, 0.24);
+}
+.idnum text{
+  height: inherit;
+  margin: 30rpx;
+}
+
+input {
+  font-size: 35rpx;
+}
+.warning{
+  width: 95%;
+  padding: 15rpx;
+  margin: 15rpx;
+}
+.warning view{
+  padding: 10rpx
+}
+.font{
+  color: #2284e6;
+}
+.deadline{
+  color: rgb(255, 117, 117)
+}

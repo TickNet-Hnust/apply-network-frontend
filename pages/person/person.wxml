@@ -1,0 +1,19 @@
+<!--pages/person/person.wxml-->
+
+<view>
+  <view class='header'>
+    欢迎使用湖南科技大学网络信息服务
+  </view>
+  <view class='content'>
+    <view class='idnum' bindtap='next_to'>
+      <view class='font'>{{modify_psw}}</view><image src='../../images/right.png'></image>
+    </view>
+    <view class='idnum' bindtap='logout'>
+      <view class='font' >{{logout}}</view><image src='../../images/right.png'></image>
+    </view>
+  </view>
+
+    <!-- <button bindtap='show'>显示</button>
+    <button bindtap='hide'>隐藏</button>
+    <button bindtap='goto'>跳转</button> -->
+</view>

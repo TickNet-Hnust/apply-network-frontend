@@ -1,0 +1,20 @@
+<!--pages/modify_psw/modify_psw.wxml-->
+<view class='content'>
+  <!-- <view class='idnum' >
+    <view class='font'>原密码</view>
+    <input placeholder=''></input>
+  </view> -->
+  <view class='idnum' >
+    <view class='font'></view>
+    <input type='number' placeholder='新密码' bindinput='new1'></input>
+  </view>
+  <view class='idnum'>
+    <view class='font'></view>
+    <input type='number' placeholder='再次输入'  bindinput='new2'></input>
+  </view>
+  <view class='login'>
+    <button bindtap='confirm'>确认</button>
+  </view>
+  <!-- <view>{{password1}}</view>
+   <view>{{password2}}</view> -->
+</view>
