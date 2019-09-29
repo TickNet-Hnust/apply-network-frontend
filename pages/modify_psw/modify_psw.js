@@ -8,7 +8,8 @@ Page({
     password1:'',
     password2:'',
     phoneNum:'',
-    deadline:''
+    deadline:'',
+    isShowPsw:'password'
   },
   new1:function(event){
     this.setData({password1:event.detail.value})
@@ -16,17 +17,35 @@ Page({
   new2: function (event) {
     this.setData({ password2: event.detail.value })
   },
+  showPsw:function(event){
+    if(this.data.isShowPsw == 'password'){
+      this.setData({isShowPsw:'number'})
+    }else{
+      this.setData({ isShowPsw: 'password' })
+    }
+  },
   confirm:function(){
     wx.showLoading({
       title: '',
     })
     if(this.data.password1.trim()!=''&&this.data.password2.trim()!=''){
       if (this.data.password1.trim() == this.data.password2.trim()){
+        wx.login({
+          success: res => {
+            console.log(res);
+            getApp().globalData.appCode = res.code
+          }
+        })
+        var _this = this;
         wx.request({
-          url: 'http://' + getApp().globalData.url +'/network/public/index.php/api/network/modify?number='+this.data.phoneNum+'&password='+this.data.password1+'&code=002',
+          url: 'http://' + getApp().globalData.url + '/apply-network-server/public/api/network/modify?number=' + this.data.phoneNum + '&password=' + this.data.password1 + '&appCode=' + getApp().globalData.appCode,
           success:function(res){
             wx.hideLoading();
-            if(res.data.error_code == 0){
+            if(res.data.error_code == "0"){
+              // console.log(typeof(res.data.error_code));return;
+              var _get = wx.getStorageSync('phoneNum');
+              _get.password = _this.data.password1;
+              wx.setStorageSync('phoneNum', _get);
               wx.showToast({
                 title: res.data.message,
                 icon: 'success',
@@ -39,15 +58,12 @@ Page({
             }else{
               wx.showToast({
                 title: res.data.message,
-                image:'../../images/error.png'
+                icon:'none'
               })
             }
             
           }
         })
-        var _get = wx.getStorageSync('phoneNum')
-        _get.password = this.data.password1
-        wx.setStorageSync('phoneNum', _get)
         // wx.showToast({
         //   title: '修改成功',
         //   icon:'success',

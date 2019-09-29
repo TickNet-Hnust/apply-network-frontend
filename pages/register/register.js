@@ -6,7 +6,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-   
+    // console.log(getApp().globalData.userInfo)
     try {
       const res = wx.getStorage({
         key: 'phoneNum',
@@ -17,7 +17,7 @@ Page({
               title: '身份验证过期',
               image: '../../images/error.png',
               success: function() {
-                // wx.clearStorage()
+                wx.clearStorage()
                 return;
               }
             })
@@ -38,6 +38,9 @@ Page({
           }
          
         },
+        fail:function(){
+
+        }
       })
     } catch (e) {
       // Do something when catch error
@@ -99,25 +102,30 @@ Page({
     validation: '',
     codename: '获取验证码',
     disabled: false,
-    isShow: true
+    isShow: true,
+    isAgree:false
   },
   login: function() {
-    // wx.setStorage({
-    //   key: 'phoneNum',
-    //   data: {
-    //     deadline: new Date().getTime() + 20 * 60 * 60 * 1000,
-    //     phoneNum: 13373727862,
-    //     password: 123456
-    //   }
-    // })
-    wx.redirectTo({
-      url: '../getUserInfo/getUserInfo',
+    wx.setStorage({
+      key: 'phoneNum',
+      data: {
+        deadline: new Date().getTime() + 20 * 60 * 60 * 1000,
+        phoneNum: 13373727862,
+        password: 123456
+      }
     })
+  },
+  bindAgreeChange:function(){
+    this.setData({
+      isAgree: !this.data.isAgree
+    })
+    console.log(this.data.isAgree)
   },
   inputNum: function(e) {
     this.setData({
-      phoneNum: e.detail.value
+      phoneNum:e.detail.value
     })
+    getApp().globalData.phoneNum=e.detail.value
     console.log("phone:" + e.detail.value)
   },
   inputValid: function(e) {
@@ -133,7 +141,6 @@ Page({
  */
   getData: function() {
     let myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
-
     if (this.data.phoneNum.trim() == '' || !myreg.test(this.data.phoneNum.trim())) {
       wx.showToast({
         title: '请输入正确的手机号',
@@ -147,11 +154,29 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
+    wx.login({
+      success: res => {
+        console.log(res);
+        getApp().globalData.appCode = res.code
+      }
+    })
     wx.request({
-      url: 'http://' + getApp().globalData.url + '/network/public/index.php/api/Sendms' + '?number=' + this.data.phoneNum.trim(),
+      url: 'http://' + getApp().globalData.url + '/apply-network-server/public/api/Sendms',
+      data:{
+        number: getApp().globalData.phoneNum,
+        appCode: getApp().globalData.appCode
+      },
       success: function(res) {
         console.log(res.data)
         var _this = that
+        if(res.data[0] == 'T'&&res.data[1]=='u'){
+          wx.hideLoading()
+          wx.showToast({
+            title: '网络请求错误',
+            image: '../../images/error.png'
+          })
+          return;
+        }
         wx.hideLoading()
         wx.showToast({
           title: res.data.message,
@@ -160,7 +185,7 @@ Page({
           success: function() {
             _this.setData({
               disabled: true,
-              codename: num + "s后重新获取"
+              codename: num + "s后再获取"
             })
           }
         })
@@ -169,12 +194,12 @@ Page({
           if (num <= 0) {
             clearInterval(timer);
             _this.setData({
-              codename: '重新获取',
+              codename: '获取验证码',
               disabled: false
             })
           } else {
             _this.setData({
-              codename: num + "s后重新获取",
+              codename: num + "s后再获取",
               disabled: true
             })
           }
@@ -187,14 +212,10 @@ Page({
         })
       }
     })
-    //  setTimeout(function() {
-
-    // }, 1000)
   },
 
   /*
     注册信息：要求有正确的手机号码和正确的验证码
-    暂还未添加请求操作
   */
   register: function() {
     let myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
@@ -212,9 +233,22 @@ Page({
         duration: 1000
       })
       return 0;
+    } else if (this.data.isAgree == false) {
+      wx.showToast({
+        title: '请同意《相关条款》',
+        icon: 'none',
+        duration: 1000
+      })
+      return 0;
     } else {
       wx.showLoading({
         title: '',
+      })
+      wx.login({
+        success: res => {
+          console.log(res);
+          getApp().globalData.appCode = res.code
+        }
       })
       let temp = new Date();
       getApp().globalData.phoneNum = this.data.phoneNum.trim();
@@ -224,11 +258,19 @@ Page({
       console.log(temp.getHours());
       console.log(temp.getMinutes());
       console.log(temp.getSeconds());
-      console.log('http://' + getApp().globalData.url + '/network/public/index.php/api/network/create' + '?number=' + getApp().globalData.phoneNum + '&code=' + getApp().globalData.validation)
       wx.request({
-        url: 'http://' + getApp().globalData.url + '/network/public/index.php/api/network/create' + '?number=' + getApp().globalData.phoneNum + '&code=' + getApp().globalData.validation,
+        url: 'http://' + getApp().globalData.url + '/apply-network-server/public/api/network/create',
+        data:{
+          number: getApp().globalData.phoneNum ,
+          messageCode: getApp().globalData.validation,
+          appCode: getApp().globalData.appCode,
+          nickName: getApp().globalData.userInfo.nickName,
+          gender: getApp().globalData.userInfo.gender,
+          province: getApp().globalData.userInfo.province,
+          city: getApp().globalData.userInfo.city,
+          country: getApp().globalData.userInfo.country
+        },
         success: function(res) {
-          // console.log(res.data)
           // return ;
           if (res.data.error_code == "0") {
             wx.hideLoading();
@@ -248,14 +290,25 @@ Page({
                   wx.switchTab({
                     url: '../index/index',
                   })
-
                 }, 1000)
+                return 0;
               }
             })
           }
+          wx.hideLoading()
+          console.log(res.data.message)
+          console.log(res.data.error_code)
+          console.log(getApp().globalData.phoneNum)
           wx.showToast({
-            title: res.data.message,
+            title: res.data.message ? res.data.message : "网络出错",
             icon: 'none',
+          })
+        },
+        fail:function(){
+          wx.hideLoading()
+          wx.showToast({
+            title: '网络出错',
+            image:'../../images/error.png'
           })
         }
       })

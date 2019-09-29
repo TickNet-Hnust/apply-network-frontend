@@ -3,5 +3,5 @@
   <view class="btn">
     <button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">授权登录</button>
   </view>
-  <image class="bkg" mode="aspectFill" src="../../images/temp.jpg"></image>
+  <image class="bkg" mode="widthFix" src="../../images/auth.png"></image>
 </view>

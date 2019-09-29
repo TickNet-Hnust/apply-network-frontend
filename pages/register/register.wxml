@@ -1,25 +1,40 @@
-<!--pages/register/register.wxml-->
-<view class='container'>
-  <text class="header1">欢迎使用湖南科技大学网络信息服务</text>
-  <text class='header2'>请输入您的手机号码,登录或注册您的临时网络账号</text>
-  <view class='content'>
-    <view class='phone'>
-      <input type='number' placeholder='手机号' bindinput='inputNum'></input>
+<!--viewbuttonges/register/register.wxml-->
+<view class="title">欢迎使用湖南科技大学网络信息服务</view>
+<view class="weui-cells__title">请输入您的手机号码,登录或注册您的临时网络账号</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell ">
+    <view class="weui-cell__hd">
+      <view class="weui-label">手机号</view>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input" type="number" bindinput="inputNum" placeholder="请输入手机号" />
     </view>
   </view>
-  <view class='content'>
-    <view class='validation'>
-      <input  type='number'  placeholder='验证码' bindinput='inputValid'></input>
+  <view class="weui-cell  weui-cell_vcode">
+    <view class="weui-cell__hd">
+      <view class="weui-label">验证码</view>
     </view>
-    <view class='button'>
-      <button style="border-radius:5px" bindtap='getData' disabled='{{disabled}}'>{{codename}}</button>
+    <view class="weui-cell__bd">
+      <input class="weui-input" bindinput="inputValid" type="number" placeholder="请输入验证码" />
+    </view>
+    <view class="weui-cell__ft">
+      <button class="weui-vcode-btn" disabled="{{disabled}}" bindtap="getData">{{codename}}</button>
     </view>
   </view>
-  <view class='login'>
-    <button style="border-radius:5px"  bindtap='register' >登录</button>
-  </view>
-  <text class='header2'>温馨提示：登陆时自动注册</text>
-  <!-- <view>{{phoneNum}}</view>
-  <view>{{validation}}</view> -->
-  <button  bindtap='login'>授权页面</button>
 </view>
+<checkbox-group bindchange="bindAgreeChange" class="checkgroup">
+  <label class="weui-agree" for="weuiAgree">
+    <view class="weui-agree__text">
+      <checkbox class="weui-agree__checkbox" id="weuiAgree"  checked="{{isAgree}}" />
+      <view class="weui-agree__checkbox-icon">
+        <icon class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" wx:if="{{isAgree}}"></icon>
+      </view>
+      阅读并同意
+      <navigator url="" class="weui-agree__link">《相关条款》</navigator>
+    </view>
+  </label>
+</checkbox-group>
+<view class="weui-btn-area">
+  <button class="weui-btn" style="width:55%" type="primary" bindtap="register">确定</button>
+</view>
+<button bindtap="login" >设置</button>

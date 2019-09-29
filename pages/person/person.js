@@ -9,17 +9,25 @@ Page({
     modify_psw: '修改密码',
     logout: '注销'
   },
+  //跳转到修改密码页面；现在废弃，使用navigator组件跳转
   next_to: () => {
     wx.navigateTo({
-      url: '../modify_psw/modify_psw',
+      url: '../modify_psw/modify_psw'
     })
   },
+  //注销
   logout: function() {
     wx.showLoading({
       title: '',
     })
+    wx.login({
+      success: res => {
+        console.log(res);
+        getApp().globalData.appCode = res.code
+      }
+    })
     wx.request({
-      url: 'http://' + getApp().globalData.url + '/network/public/index.php/api/network/close?number=' + this.data.phoneNum+'&code=007' ,
+      url: 'http://' + getApp().globalData.url + '/apply-network-server/public/api/network/close?number=' + this.data.phoneNum + '&appCode=' + getApp().globalData.appCode, 
       success :function(res){
         wx.hideLoading();
         if(res.data.error_code == 0){
@@ -58,18 +66,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // wx.showNavigationBarLoading({
-    //   success:function(){
-    //     setTimeout(
-    //     ()=> {
-    //       wx.hideNavigationBarLoading()
-    //        wx.showToast({
-    //         title: '加载成功',
-    //         duration: 1000,
-    //       })
-    //     },1000)
-    //   }
-    // })
+  
   },
 
   /**

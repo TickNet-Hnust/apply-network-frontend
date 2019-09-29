@@ -5,27 +5,6 @@
   margin-bottom : 150rpx;
   font-size: 40rpx;
 }
-.idnum{
-  width: 100%;
-  padding: 5px;
-  line-height: 40px;
-  height: 40px;
-  border-top: 1rpx solid rgba(145, 153, 151, 0.24);
-  border-bottom: 1rpx solid rgba(145, 153, 151, 0.24);
-}
-.idnum input{
-  width: 400rpx;
-  height: inherit;
-  vertical-align: middle;
-  display : inline-block;
-}
-.font{
-  color: #2284e6;
-  width:15rpx;
-  display: inline-block;
-  margin-left:30rpx;
-  vertical-align: middle
-}
 .login {
   width: 85%;
   margin: 60rpx auto;

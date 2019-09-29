@@ -1,9 +1,14 @@
 /* pages/person/person.wxss */
 .header{
-  margin-top: 80rpx;
+  margin-top: 70rpx;
+  margin-bottom: 70rpx;
   font-size: 45rpx;
   text-align: center
 }
+ .weui-cell__bd{
+   color: #2284e6;
+ }
+ /*
 .content{
   margin-top: 150rpx;
   margin-bottom : 150rpx;
@@ -34,4 +39,4 @@
   vertical-align: middle
 }
 
-
+ */

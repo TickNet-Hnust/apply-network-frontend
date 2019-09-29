@@ -1,9 +1,25 @@
 /**index.wxss**/
 .header{
-  margin-top: 80rpx;
+  margin-top: 70rpx;
+  margin-bottom: 70rpx;
   font-size: 45rpx;
   text-align: center
 }
+.warning{
+  width: 95%;
+  padding: 15rpx;
+  margin-top: 60rpx;
+}
+.warning view{
+  padding: 10rpx
+}
+.deadline{
+  color: rgb(255, 117, 117)
+}
+.weui-cell__bd{
+  color: #2284e6
+}
+/* 
 .content{
   margin-top: 150rpx;
   margin-bottom : 150rpx;
@@ -25,17 +41,8 @@
 input {
   font-size: 35rpx;
 }
-.warning{
-  width: 95%;
-  padding: 15rpx;
-  margin: 15rpx;
-}
-.warning view{
-  padding: 10rpx
-}
+
 .font{
   color: #2284e6;
 }
-.deadline{
-  color: rgb(255, 117, 117)
-}
+ */

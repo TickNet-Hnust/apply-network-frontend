@@ -1,7 +1,7 @@
 {
   "backgroundTextStyle": "light",
-  "navigationBarBackgroundColor": "#2db8f8",
-  "navigationBarTitleText": "授权",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "跳转",
   "navigationBarTextStyle": "black",
   "usingComponents": {}
 }

@@ -4,16 +4,25 @@
   <view class='header'>
     欢迎使用湖南科技大学网络信息服务
   </view>
-  <view class='content'>
+  <!-- <view class='content'>
     <view class='idnum' bindtap='next_to'>
       <view class='font'>{{modify_psw}}</view><image src='../../images/right.png'></image>
     </view>
     <view class='idnum' bindtap='logout'>
       <view class='font' >{{logout}}</view><image src='../../images/right.png'></image>
     </view>
+  </view> -->
+  <view class="weui-cells weui-cells_after-title">
+    <navigator url="../modify_psw/modify_psw"  class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__bd">{{modify_psw}}</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+    <navigator url=""  bindtap='logout' class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__bd">{{logout}}</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
   </view>
-
-    <!-- <button bindtap='show'>显示</button>
+  <!-- <button bindtap='show'>显示</button>
     <button bindtap='hide'>隐藏</button>
     <button bindtap='goto'>跳转</button> -->
 </view>
