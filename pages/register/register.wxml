@@ -22,19 +22,19 @@
     </view>
   </view>
 </view>
+<!-- <text>{{error}}</text> -->
 <checkbox-group bindchange="bindAgreeChange" class="checkgroup">
-  <label class="weui-agree" for="weuiAgree">
-    <view class="weui-agree__text">
+  <label class="weui-agree" >
+    <view class="weui-agree__text" for="weuiAgree">
       <checkbox class="weui-agree__checkbox" id="weuiAgree"  checked="{{isAgree}}" />
       <view class="weui-agree__checkbox-icon">
         <icon class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" wx:if="{{isAgree}}"></icon>
       </view>
-      阅读并同意
-      <navigator url="" class="weui-agree__link">《相关条款》</navigator>
+      <label >阅读并同意</label><navigator url="" class="weui-agree__link">《相关条款》</navigator>
     </view>
   </label>
 </checkbox-group>
 <view class="weui-btn-area">
-  <button class="weui-btn" style="width:55%" type="primary" bindtap="register">确定</button>
+  <button class="weui-btn" style="" bindtap="register">确定</button>
 </view>
-<button bindtap="login" >设置</button>
+<button bindtap="login" style="margin-top:100px" >设置缓存</button>

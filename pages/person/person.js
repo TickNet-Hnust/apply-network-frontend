@@ -26,40 +26,57 @@ Page({
         getApp().globalData.appCode = res.code
       }
     })
-    wx.request({
-      url: 'http://' + getApp().globalData.url + '/apply-network-server/public/api/network/close?number=' + this.data.phoneNum + '&appCode=' + getApp().globalData.appCode, 
-      success :function(res){
-        wx.hideLoading();
-        if(res.data.error_code == 0){
-          wx.removeStorage({
-            key: 'phoneNum'
-          })
-          wx.showToast({
-            title: res.data.message,
-            duration: 1000,
-            success: () => {
-              setTimeout(() => {
-                wx.redirectTo({
-                  url: '../register/register',
-                })
-              }, 1000)
+    var that = this;
+    try{
+      wx.request({
+        url: getApp().globalData.url + '/apply-network-server/public/api/network/close',
+        data: {
+          number: that.data.phoneNum,
+          appCode: getApp().globalData.appCode
+        },
+        success: function (res) {
+          if (res.statusCode == 404 || res.statusCode == 500){
+            wx.showToast({
+              title: res.statusCode + '请求错误',
+              icon: 'none'
+            })
+          }else{
+            wx.hideLoading();
+            if (res.data.error_code == 0) {
+              wx.removeStorage({
+                key: 'phoneNum'
+              })
+              wx.showToast({
+                title: res.data.message,
+                duration: 1000,
+                success: () => {
+                  setTimeout(() => {
+                    wx.redirectTo({
+                      url: '../register/register',
+                    })
+                  }, 1000)
+                }
+              })
+            } else {
+              wx.showToast({
+                title: res.data.message,
+                icon: 'none'
+              })
             }
-          })
-        }else{
+          }
+          
+        },
+        fail: function (res) {
+          wx.hideLoading();
           wx.showToast({
-            title: res.data.message,
-            icon:'none'
+            title: '网络出错',
+            icon: 'none'
           })
         }
-      },
-      fail:function(res){
-        wx.hideLoading();
-        wx.showToast({
-          title: '网络出错',
-          icon: 'none'
-        })
-      }
-    })
+      })
+    }catch(err){
+      console.log(err)
+    }
     
   },
   /**

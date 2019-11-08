@@ -5,35 +5,35 @@
   <view class='header'>
     欢迎使用湖南科技大学网络信息服务
   </view>
-  <!-- <view class='content'>
-    <view class='idnum'>
-      <text class='font'>{{idname}}</text>
-      <text>{{phoneNum}}</text>
-    </view>
-    <view class='idnum'>
-      <text class='font'>{{pswname}}</text>
-      <text>{{password}}</text>
-    </view>
-  </view> -->
   <view class="weui-cells weui-cells_after-title">
-    <view class="weui-cell">
-      <view class="weui-cell__bd">{{idname}}</view>
-      <view class="weui-cell__ft">{{phoneNum}}</view>
+    <view class="weui-cell ">
+      <view class="weui-cell__hd">
+        <view class="weui-label">{{idname}}</view>
+      </view>
+      <view class="weui-cell__bd">
+        <view class="weui-input">{{phoneNum}}</view>
+      </view>
     </view>
-    <view class="weui-cell">
-      <view class="weui-cell__bd">{{pswname}}</view>
-      <view class="weui-cell__ft">{{password}}</view>
+    <view class="weui-cell weui-cell_primary">
+      <view class="weui-cell__hd">
+        <view class="weui-label">{{pswname}}</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" disabled="true" password="{{isPsw}}" value="{{password}}" />
+      </view>
+      <view class="weui-cell__ft" bindtap="showPsw">
+        <image src="../../images/eye.png" style="width:23px;" mode="widthFix"></image>
+      </view>
     </view>
   </view>
+
   <view class='warning'>
     <view>{{tobeknow.header}}</view>
-    <view>{{tobeknow.first}}</view>
+    <view>{{tobeknow.first}}
+      <text class="login_net" bindtap="toOut">此处</text>
+    </view>
     <view>{{tobeknow.second}}</view>
     <view>{{tobeknow.third1}}
       <text class='deadline'>{{Y+"-"}}{{M+"-"}}{{D+" "}}{{H+":"}}{{F}}</text>{{tobeknow.third2}}</view>
   </view>
-  <!--  -->
-  <!-- <button bindtap='show'>显示</button>
-    <button bindtap='hide'>隐藏</button>
-    <button bindtap='goto'>跳转</button> -->
 </view>

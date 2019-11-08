@@ -1,5 +1,10 @@
 /* pages/modify_psw/modify_psw.wxss */
-
+.header{
+  /* margin-top: 70rpx; */
+  margin-bottom: 70rpx;
+  font-size: 30rpx;
+  text-align: center
+}
 .content{
   margin-top: 150rpx;
   margin-bottom : 150rpx;
@@ -14,9 +19,12 @@
 .login button::after {
   border-radius: 0;
 }
-
-button {
-  border-radius: 0;
-  background-color: #337ab7;
+.bkg{
+  border-radius: 50%;
+  width: 150rpx;
 }
+.weui-msg__tips{
+  text-align: center
+}
+
 

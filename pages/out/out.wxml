@@ -1,0 +1,2 @@
+<!--pages/out/out.wxml-->
+<web-view src="http://192.168.254.226"></web-view>

@@ -1,22 +1,23 @@
 /* pages/getUserInfo/getUserInfo.wxss */
-
+.weui-msg__icon-area{
+  text-align: center
+}
 .bkg {
   width: 30%;
-  margin-left: 35%;
-  margin-top: 20%;
+  margin-top: 30%;
 }
 .btn {
   width: 60%;
-  top: 50%;
-  left: 20%;
-  right: 20%;
-  position: absolute;
-  
+  background: #1296db;
+  color: white;
+  border-radius: 50px;
+}
+.page{
+  height: 590px;
+}
+.weui-msg__title{
+  margin-top: 40px;
 }
 
-.btn button {
-  border-radius: 30px;
-  margin: 0 auto;
-  background: #2db8f8;
-}
+
 

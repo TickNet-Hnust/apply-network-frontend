@@ -1,7 +1,26 @@
 <!--pages/getUserInfo/getUserInfo.wxml-->
-<view class="content">
-  <view class="btn">
-    <button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">授权登录</button>
+<view class="page">
+  <view class="weui-msg">
+    <view class="weui-msg__icon-area">
+      <image class="bkg" mode="widthFix" src="../../images/auth.png"></image>
+    </view>
+    <view class="weui-msg__text-area">
+      <view class="weui-msg__title">湖科大上网注册小程序</view>
+      <view class="weui-msg__tips">欢迎使用,您可以选择授权进入来使用该程序</view>
+    </view>
+    <view class="weui-msg__opr-area">
+      <view class="weui-btn-area">
+        <button open-type="getUserInfo" class="btn" bindgetuserinfo="onGotUserInfo">授权登录</button>
+      </view>
+    </view>
+    <view class="weui-msg__tips-area">
+    </view>
+    <view class="weui-msg__extra-area">
+      <view class="weui-footer">
+        <view class="weui-footer__links">
+        </view>
+        <view class="weui-footer__text">Copyright © 2019 TickNet Studio</view>
+      </view>
+    </view>
   </view>
-  <image class="bkg" mode="widthFix" src="../../images/auth.png"></image>
 </view>

@@ -1,11 +1,12 @@
 //app.js
+import {Base64} from './utils/base64.js'
 App({
   data: {
 
   },
   globalData: {
     //设置请求url
-    url: 'dxnqz7.natappfree.cc',
+    url: 'http://a2xfvt.natappfree.cc',
     //手机号码和登录账号、登录密码、验证码
     phoneNum: '',
     password: '',
@@ -19,6 +20,7 @@ App({
       province: '',
       city: '',
       province: '',
+      img:''
     },
     //AppCode
     appCode:'',
@@ -30,6 +32,15 @@ App({
     //设置注册时间
     setTime: ''
 
+  },
+  encode:(data)=>{
+    return Base64.encode(data.toString());
+  },
+  decode:(data)=>{
+    return Base64.decode(data.toString());
+  },
+  log: (data) => {
+    console.log(data)
   },
   onLaunch: function() {
     // 展示本地存储能力
@@ -43,17 +54,15 @@ App({
       success: res => {
         console.log(res);
         getApp().globalData.appCode = res.code
-        // wx.request({
-        //   url: 'http://dxnqz7.natappfree.cc/apply-network-server/public/api/test?appCode='+res.code,
-        //   success:(res)=>{
-        //     console.log(res)
-            
-        //   }
-        // })
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
-    
+
+    wx.showLoading({
+      title: '拼命加载...',
+      duration: 1000,
+    })
+    // console.log("loading未获取")
     //获取用户信息
     wx.getSetting({
       success: res => {
@@ -63,18 +72,7 @@ App({
           wx.getUserInfo({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
-              //console.log(res)
-              getApp().globalData.userInfo.nickName = res.userInfo.nickName,
-              getApp().globalData.userInfo.country = res.userInfo.country,
-              getApp().globalData.userInfo.province = res.userInfo.province,
-              getApp().globalData.userInfo.city = res.userInfo.city;
-              getApp().globalData.userInfo.gender = res.userInfo.gender;
-              wx.reLaunch({
-                url: '/pages/register/register',
-                success: function() {
-                  console.log("跳转成功")
-                }
-              })
+              
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
@@ -83,12 +81,10 @@ App({
             }
           })
         } else {
-          console.log("未授权")
-          wx.reLaunch({
-            url: '/pages/getUserInfo/getUserInfo',
-          })
+          console.log("app.js")
         }
       }
     })
+
   }
 })

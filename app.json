@@ -6,7 +6,8 @@
     "pages/index/index",
     "pages/modify_psw/modify_psw",
     "pages/person/person",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/out/out"
   ],
   "window": {
     "backgroundTextStyle": "light",

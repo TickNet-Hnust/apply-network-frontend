@@ -6,7 +6,7 @@
   text-align: center
 }
  .weui-cell__bd{
-   color: #2284e6;
+   color: #1296db;
  }
  /*
 .content{

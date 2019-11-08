@@ -12,8 +12,16 @@
   margin-top: 10rpx;
   margin-bottom: 20rpx;
 }
+.weui-btn{
+  width:55% ;
+  background:#1296db;
+}
+.weui-agree__link{
+  color: #1296db;
+}
 .weui-vcode-btn{
   border: none;
   text-decoration: none;
+  color: #1296db;
 }
 

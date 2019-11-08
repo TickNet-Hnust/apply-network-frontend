@@ -17,7 +17,11 @@
   color: rgb(255, 117, 117)
 }
 .weui-cell__bd{
-  color: #2284e6
+  color: #1296db
+}
+.login_net{
+  display: inline-block;
+  color: #1296db;
 }
 /* 
 .content{

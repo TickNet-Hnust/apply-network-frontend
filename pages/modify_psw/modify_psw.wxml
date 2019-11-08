@@ -1,28 +1,33 @@
 <!--pages/modify_psw/modify_psw.wxml-->
 <view class='content'>
+  <view class="weui-msg__icon-area" style="text-align:center">
+    <image class="bkg" mode="widthFix" src="{{avatar}}"></image>
+  </view>
+  <view class='header'>登录账号：{{phoneNum}}</view>
+   <view class="weui-msg__tips">Tips:密码必须是由4-10位的数字或字母组成</view>
   <view class="weui-cells weui-cells_after-title">
-  <view class="weui-cell ">
-    <view class="weui-cell__hd">
-      <view class="weui-label">新密码</view>
+    <view class="weui-cell ">
+      <view class="weui-cell__hd">
+        <view class="weui-label">新密码</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" password="{{isPsw}}" bindinput="new1" placeholder="请输入新密码" />
+      </view>
     </view>
-    <view class="weui-cell__bd">
-      <input class="weui-input" type="{{isShowPsw}}" bindinput="new1" placeholder="请输入新密码" />
+    <view class="weui-cell weui-cell_primary">
+      <view class="weui-cell__hd">
+        <view class="weui-label">再次输入</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" bindinput="new2" password="{{isPsw}}" placeholder="请再次输入" />
+      </view>
+      <view class="weui-cell__ft" bindtap="showPsw">
+        <image src="../../images/eye.png" style="width:23px;" mode="widthFix"></image>
+      </view>
     </view>
   </view>
-  <view class="weui-cell weui-cell_primary">
-    <view class="weui-cell__hd">
-      <view class="weui-label">再次输入</view>
-    </view>
-    <view class="weui-cell__bd">
-      <input class="weui-input" bindinput="new2" type="{{isShowPsw}}" placeholder="请再次输入" />
-    </view>
-    <view class="weui-cell__ft">
-        <image src="../../images/eye.png" bindtap="showPsw" style="width:23px;" mode="widthFix" ></image>
-    </view>
-  </view>
-</view>
-  <view class='login'>
-    <button bindtap='confirm'>确认</button>
+  <view class="weui-btn-area">
+    <button class="weui-btn" style="width:55% ;background:#2284e6" disabled="{{disabled}}" bindtap="confirm">确定</button>
   </view>
   <!-- <view>{{password1}}</view>
    <view>{{password2}}</view> -->
